@@ -6,7 +6,7 @@ if (!require("pacman")) install.packages("pacman")
 #Load packages
 pacman::p_load(tidyverse)
 
-df <- read.csv("MixturesWithFeatures.csv")
+df <- read.csv("./data/raw/MixturesWithFeatures.csv")
 
 # You can load from Dropbox if you are having issues loading from the workspace:
 # df <- read.csv("https://www.dropbox.com/scl/fi/f75j07xedtsv3774con0k/MixturesWithFeatures.csv?rlkey=lyfw541vdb6byhpj1341etvnu&dl=1", row.names=NULL)
@@ -32,5 +32,10 @@ df %>%
   geom_smooth(method = "lm")+
   labs(x="Percentage discrimination",y="Angle Distance")
 
-
+#Starter plot of Discrimination vs. Percentage overlap
+df %>%
+    ggplot(aes(y = diff_mixture_size, x = experimental_values)) +
+    geom_point() +
+    geom_smooth(method = "lm")+
+    labs(x="Percentage discrimination",y="Number of different compounds")
 
