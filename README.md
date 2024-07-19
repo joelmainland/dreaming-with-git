@@ -9,9 +9,6 @@ May, from GitHub desktop/R studio this time!
 
 Aubrey
 
-Joel testing
-
-test
 
 Cathy
 
