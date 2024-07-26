@@ -1,0 +1,258 @@
+"0","knitr::opts_chunk$set(echo = TRUE)"
+"0","knitr::opts_knit$set(root.dir=""~/Documents/R/DREAM Mixtures"")"
+"0",""
+"0","if (!require(""pacman"")) install.packages(""pacman"")"
+"2","Loading required package: pacman
+"
+"0","#Load packages"
+"0","pacman::p_load(tidyverse,randomForest,caret,GGally)"
+"2","Installing package into ‘C:/Users/Emily Mayhew/AppData/Local/R/win-library/4.3’
+(as ‘lib’ is unspecified)
+"
+"2","Warning: downloaded length 0 != reported length 0"
+"2","Warning: cannot open URL 'https://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.3/PACKAGES.rds': HTTP status was '404 Not Found'"
+"2","Warning: downloaded length 0 != reported length 0"
+"2","Warning: cannot open URL 'https://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.3/PACKAGES.gz': HTTP status was '404 Not Found'"
+"2","Warning: downloaded length 0 != reported length 0"
+"2","Warning: cannot open URL 'https://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.3/PACKAGES': HTTP status was '404 Not Found'"
+"2","Warning: unable to access index for repository http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.3:
+  cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.3/PACKAGES'"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/randomForest_4.7-1.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 222386 bytes (217 KB)
+"
+"2","downloaded 217 KB
+
+"
+"1","package ‘randomForest’ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\Emily Mayhew\AppData\Local\Temp\RtmpuKmq4E\downloaded_packages"
+"1",""
+"1","
+"
+"2","
+randomForest installed
+"
+"2","Installing package into ‘C:/Users/Emily Mayhew/AppData/Local/R/win-library/4.3’
+(as ‘lib’ is unspecified)
+"
+"2","also installing the dependencies ‘listenv’, ‘parallelly’, ‘future’, ‘globals’, ‘future.apply’, ‘progressr’, ‘SQUAREM’, ‘diagram’, ‘lava’, ‘prodlim’, ‘clock’, ‘gower’, ‘hardhat’, ‘ipred’, ‘timeDate’, ‘ModelMetrics’, ‘pROC’, ‘recipes’
+
+"
+"2","Warning: downloaded length 0 != reported length 0"
+"2","Warning: cannot open URL 'https://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.3/PACKAGES.rds': HTTP status was '404 Not Found'"
+"2","Warning: downloaded length 0 != reported length 0"
+"2","Warning: cannot open URL 'https://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.3/PACKAGES.gz': HTTP status was '404 Not Found'"
+"2","Warning: downloaded length 0 != reported length 0"
+"2","Warning: cannot open URL 'https://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.3/PACKAGES': HTTP status was '404 Not Found'"
+"2","Warning: unable to access index for repository http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.3:
+  cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.3/PACKAGES'"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/listenv_0.9.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 109202 bytes (106 KB)
+"
+"2","downloaded 106 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/parallelly_1.37.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 362745 bytes (354 KB)
+"
+"2","downloaded 354 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/future_1.33.2.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 681229 bytes (665 KB)
+"
+"2","downloaded 665 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/globals_0.16.3.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 109470 bytes (106 KB)
+"
+"2","downloaded 106 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/future.apply_1.11.2.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 157345 bytes (153 KB)
+"
+"2","downloaded 153 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/progressr_0.14.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 387576 bytes (378 KB)
+"
+"2","downloaded 378 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/SQUAREM_2021.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 183115 bytes (178 KB)
+"
+"2","downloaded 178 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/diagram_1.6.5.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 682242 bytes (666 KB)
+"
+"2","downloaded 666 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/lava_1.8.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 2513122 bytes (2.4 MB)
+"
+"2","downloaded 2.4 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/prodlim_2024.06.25.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 420006 bytes (410 KB)
+"
+"2","downloaded 410 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/clock_0.7.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 2130289 bytes (2.0 MB)
+"
+"2","downloaded 2.0 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/gower_1.0.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 314815 bytes (307 KB)
+"
+"2","downloaded 307 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/hardhat_1.4.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 837100 bytes (817 KB)
+"
+"2","downloaded 817 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/ipred_0.9-15.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 387583 bytes (378 KB)
+"
+"2","downloaded 378 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/timeDate_4032.109.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1439577 bytes (1.4 MB)
+"
+"2","downloaded 1.4 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/ModelMetrics_1.2.2.2.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 495622 bytes (484 KB)
+"
+"2","downloaded 484 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/pROC_1.18.5.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1169684 bytes (1.1 MB)
+"
+"2","downloaded 1.1 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/recipes_1.1.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1635179 bytes (1.6 MB)
+"
+"2","downloaded 1.6 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.3/caret_6.0-94.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 3577795 bytes (3.4 MB)
+"
+"2","downloaded 3.4 MB
+
+"
+"1","package ‘listenv’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘parallelly’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘future’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘globals’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘future.apply’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘progressr’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘SQUAREM’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘diagram’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘lava’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘prodlim’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘clock’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘gower’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘hardhat’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘ipred’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘timeDate’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘ModelMetrics’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘pROC’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘recipes’ successfully unpacked and MD5 sums checked
+"
+"1","package ‘caret’ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\Emily Mayhew\AppData\Local\Temp\RtmpuKmq4E\downloaded_packages"
+"1",""
+"1","
+"
+"2","
+caret installed
+"
+"0","theme_set(theme_light())"
+"0",""
+"0","#Note that I start with a brief slide show to re-introduce the challenge"

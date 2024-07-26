@@ -1,0 +1,6 @@
+"0","print(paste(""R-squared on test set:"", r_squared))
+"
+"1","[1]"
+"1"," ""R-squared on test set: 0.263343178822379"""
+"1","
+"
