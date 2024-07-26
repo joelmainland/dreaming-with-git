@@ -291,7 +291,7 @@ fit_monmlpFit <- lm(mixture.predict ~ experimental_values, data = mixture.result
 print(paste0("Adj R2 = ",signif(summary(fit_monmlpFit)$adj.r.squared, 5)))
 print(paste0(" P =",signif(summary(fit_monmlpFit)$coef[2,4], 5)))
 
-
+#comment
 ```
 
 # Ideas for contributing
