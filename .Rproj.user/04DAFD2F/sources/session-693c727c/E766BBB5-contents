@@ -16,11 +16,14 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir="~/Documents/R/DREAM Mixtures")
+#knitr::opts_knit$set(root.dir="~/Documents/R/DREAM Mixtures")
 
 if (!require("pacman")) install.packages("pacman")
 #Load packages
 pacman::p_load(tidyverse,randomForest,caret,GGally)
+library(here)
+
+
 
 theme_set(theme_light())
 
@@ -30,10 +33,9 @@ theme_set(theme_light())
 # Look at the data
 
 ```{r}
-library(here)
+
 #This is generated from Preprocessing.R
 mixturesWithFeatures <- read.csv(here("data", "raw", "MixturesWithFeatures.csv"))
-#mixturesWithFeatures <- read.csv("data/")
 
 # You can load from Dropbox if you are having issues loading from the workspace:
 # mixturesWithFeatures <- read.csv("https://www.dropbox.com/scl/fi/f75j07xedtsv3774con0k/MixturesWithFeatures.csv?rlkey=lyfw541vdb6byhpj1341etvnu&dl=1", row.names=NULL)
@@ -218,6 +220,7 @@ Difference in mixture size is the least important variable. The two metrics disa
 # Simple caret structure
 
 ```{r}
+
 #define training control
 fitControl <- trainControl(method = "repeatedcv",number = 5,repeats = 2) #5 fold cv, repeat 2 times
 
@@ -230,34 +233,23 @@ print(rfFit)
 
 ```
 
-```{r}
-#Emily's algorithm
-#install xgb package
-pacman::p_load("Xgboost")
 
-xgbLinearFit<-train(experimental_values ~ diff_mixture_size + overlap_percent + angle_dist, data = train_set,
-             method = "xgbLinear",
-             trControl = fitControl,
-             metric="RMSE")
-#Look at performance in cross-validation
-print(xgbLinearFit)
+# Ideas for contributing
+## Feature engineering
 
+Think of a new feature that might help us predict mixture discriminability and add it as a column to mixturesWithFeatures
 
-#Now try it on the test set
-mixture.predict = predict(xgbLinearFit, test_set)
-mixture.results <- cbind(test_set,Predicted=mixture.predict)
+## Feature selection
 
-mixture.results %>%
-  ggplot(aes(y = mixture.predict, x = experimental_values)) +
-  geom_point() +
-  geom_smooth(method = "lm")+
-  labs(x="Percentage discrimination",y="XGBoost Model")
+Although machine learning models are designed to figure out which features best predict the outcome variable, pruning features that are irrelevant will improve performance.
 
-fit3 <- lm(mixture.predict ~ experimental_values, data = mixture.results)
+## Model comparisons
 
-print(paste0("Adj R2 = ",signif(summary(fit3)$adj.r.squared, 5)))
-print(paste0(" P =",signif(summary(fit3)$coef[2,4], 5)))
-```
+In the train block, you can change 'method = "rf"' to use a huge number of different models. Here is a list of possible models: https://topepo.github.io/caret/available-models.html
+
+## Additional data
+
+One of the most straightforward ways to improve a model is to train it on a larger dataset. Is there any dataset (for example at pyrfume.org) that can be used to train your model?
 
 # Aubrey - ML Model Testing
 ```{r Aubrey's ML Model Testing}
@@ -293,20 +285,3 @@ print(paste0(" P =",signif(summary(fit_monmlpFit)$coef[2,4], 5)))
 
 
 ```
-
-# Ideas for contributing
-## Feature engineering
-
-Think of a new feature that might help us predict mixture discriminability and add it as a column to mixturesWithFeatures
-
-## Feature selection
-
-Although machine learning models are designed to figure out which features best predict the outcome variable, pruning features that are irrelevant will improve performance.
-
-## Model comparisons
-
-In the train block, you can change 'method = "rf"' to use a huge number of different models. Here is a list of possible models: https://topepo.github.io/caret/available-models.html
-
-## Additional data
-
-One of the most straightforward ways to improve a model is to train it on a larger dataset. Is there any dataset (for example at pyrfume.org) that can be used to train your model?

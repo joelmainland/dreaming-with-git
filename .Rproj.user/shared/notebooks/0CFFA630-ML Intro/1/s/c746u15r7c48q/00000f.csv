@@ -1,0 +1,8 @@
+"0",""
+"0","#Discrimination vs. Difference in size"
+"0","mixturesWithFeatures %>%"
+"0","  ggplot(aes(y = diff_mixture_size, x = experimental_values)) +"
+"0","  geom_point() +"
+"0","  geom_smooth(method = ""lm"")+"
+"0","  labs(x=""Percentage discrimination"",y=""Difference in size"")"
+"0",""
