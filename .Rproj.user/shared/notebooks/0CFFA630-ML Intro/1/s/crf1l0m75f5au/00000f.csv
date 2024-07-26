@@ -1,0 +1,8 @@
+"0","test_set$predicted <- predict(model_linear, newdata = test_set)"
+"0",""
+"0","test_set %>% "
+"0","  ggplot(aes(x=experimental_values,y=predicted))+"
+"0","  geom_point() +"
+"0","  geom_smooth(method = ""lm"")+"
+"0","  labs(x=""Percentage discrimination"",y=""Predicted"")"
+"0",""

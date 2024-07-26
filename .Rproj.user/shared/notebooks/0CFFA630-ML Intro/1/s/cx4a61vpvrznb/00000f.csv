@@ -1,0 +1,6 @@
+"0","#Discrimination vs. Angle Distance"
+"0","mixturesWithFeatures %>%"
+"0","  ggplot(aes(y = angle_dist, x = experimental_values)) +"
+"0","  geom_point() +"
+"0","  geom_smooth(method = ""lm"")+"
+"0","  labs(x=""Percentage discrimination"",y=""Angle Distance"")"
